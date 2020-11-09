@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>스크롤 페이징</title>
+    <style>
+        .content {
+            height: 200px;
+            overflow-y: auto;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function appendDiv(){
+            let num = document.getElementsByClassName('item').length + 1;
+            var content = document.getElementById('content');
+            for(let i = num; i < num + 5; i++){
+                let temp = '<div class="item"><h3>아이템' + i + '</h3></div>';
+                let div = document.createElement('div');
+                div.innerHTML = temp;
+                console.log(temp);
+                content.appendChild(div);
+            }
+        }
+        window.onload = function(){
+            
+            document.getElementById('content').addEventListener('scroll', function(){
+                var content = document.getElementById('content');
+                var dh = content.scrollHeight; //스크롤 높이
+                var dch = content.clientHeight; // 클라이언트 높이
+                var dct = content.scrollTop; // 스크롤 높이
+                console.log(dh,Math.round(dch), Math.round(dct));
+                if(dh == (Math.round(dch) + Math.round(dct))){ // 현재 높이가 같을 때
+                console.log('같음');
+                    appendDiv();
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="content" id="content">
+        <div class="item">
+            <h3>아이템</h3>
+        </div>
+        <div class="item">
+            <h3>아이템</h3>
+        </div>
+        <div class="item">
+            <h3>아이템</h3>
+        </div>
+        <div class="item">
+            <h3>아이템</h3>
+        </div>
+        <div class="item">
+            <h3>아이템</h3>
+        </div>
+    </div>
+</body>
+</html>
