@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+    <h2>element</h2>
+    <span>
+        <h3>text</h3>
+    </span>
+    <h2>text</h2>
+    
+</div>
+<h2>element</h2>
+    <div class="box"></div>
+    <span>
+        <h3>java</h3>
+    </span>
+    <h2>script</h2>
+    <script>
+        $(document).ready( function(){
+            //js  특정 엘리먼트(not array)의 다음을 가져옴
+            document.getElementsByClassName('box')[1].nextElementSibling  //.children[0]. style.color = 'blue';
+            
+            //jquery - 특정엘리먼트들의 마지막 엘리먼트의 다음 엘리먼트가 h2일때만 가져옴
+            $('.box').next('h2')  //.css({'color': 'red'})
+            
+            //js  특정 엘리먼트(not array)의 이전을 가져옴
+            document.getElementsByClassName('box')[1].previousElementSibling  //.children[0]. style.color = 'blue';            
+            
+            //jquery - 특정엘리먼트들의 마지막 엘리먼트의 이전 엘리먼트가 span일때만 가져옴
+            $('.box').prev('span') // .css({'color': 'blue'})
+            
+            
+            //jquery  - 특정엘리먼트의 이후의 엘리먼트가 span인것들을 가져옴
+            $('.box').nextAll('span') // .css({'color': 'blue'})
+            
+            //js - 특정엘리먼트의 이후의 엘리먼트가 span인것들을 가져옴
+            function getNextAll(){
+                let div = document.getElementsByClassName('box')[0].children
+                console.log(div)
+                const next = []
+                Array.from(div).forEach(element => {
+                    // console.log(element.nextElementSibling.tagName)
+                    // return (element.nextElementSibling && element.nextElementSibling.tagName === 'span') && element.nextElementSibling
+                    if(element.nextElementSibling && element.nextElementSibling.tagName === 'SPAN') next.push( element.nextElementSibling)
+                });
+                console.log(next)
+                
+            }
+
+            //js - 특정엘리먼트의 이전의 엘리먼트가 span인것들을 가져옴
+            function getPreviousAll(){
+                let div = document.getElementsByClassName('box')[0].children
+                console.log(div)
+                const previous = []
+                 Array.from(div).reverse().forEach(element => {
+                    // console.log(element.previousElementSibling.tagName)
+                    if(element.previousElementSibling && element.previousElementSibling.tagName === 'SPAN') previous.push( element.previousElementSibling)
+                    
+                });
+                console.log(previous)
+            }
+            //jquery  - 특정엘림먼트의 이후의 엘리먼트가 span인것들을 가져옴
+            $('.box').prevAll('span') // .css({'color': 'blue'})
+
+            getNextAll()
+            getPreviousAll()
+        })
+    </script>
+</body>
+</html>
